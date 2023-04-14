@@ -1,0 +1,32 @@
+section.mosaic-informations{
+    padding: 100px 0;
+    .container{
+        .flex-mosaic{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            img{
+                width: 100%;
+                max-width: 415px;
+                height: 300px;
+                object-fit: cover;
+            }
+            p{
+                width: 100%;
+                max-width: 400px;
+                padding: 0 10px;
+                color: $black;
+                font-size: 1.2rem;
+                font-weight: 300;
+                @media screen and (max-width: 882px) {
+                    margin: 50px 0;
+                }
+            }
+        }
+        .reverse-order{
+            flex-direction: row-reverse;
+        }
+    }
+}

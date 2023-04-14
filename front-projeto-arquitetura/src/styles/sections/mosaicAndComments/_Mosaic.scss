@@ -1,0 +1,82 @@
+section.mosaic-comments{
+    .container{
+        h5{
+            font-size: 1.9rem;
+            padding: 40px 0;
+            color: $black;
+            font-weight: bold;
+            @media screen and (max-width:1100px) {
+                text-align: center;
+            }
+        }
+        .flex-mosaic-comments{
+            display: flex;
+            @media screen and (max-width:1100px) {
+                flex-direction: column;
+                align-items: center;
+            }
+            .flex-mosaic{
+                width: 60%;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                @media screen and (max-width: 1100px) {
+                    width: 100%;
+                }
+                .box-methodologies{
+                    width: 100%;
+                    max-width: 300px;
+                    padding: 20px 15px;
+                    text-align: center;
+                    transition: .3s;
+                    cursor: default;
+                    @media screen and (max-width: 350px) {
+                        padding: 20px 5px;
+                        max-width: 300px;
+                    }
+                    &:hover{
+                        background-color: #ffeae6;
+                    }
+                    h2{
+                        font-size: 2rem;
+                        color: #2984b2;
+                    }
+                    p{
+                        font-size: 1rem;
+                        margin-top: 15px;
+                        color: $black;
+                        font-weight: 300;
+                    }
+                }
+            }
+            aside.comments{
+                width: 40%;
+                padding: 0 20px;
+                height: 400px;
+                overflow-y: auto;
+                @media screen and (max-width: 1100px) {
+                    width: 100%;
+                    margin-top: 20px;
+                    max-width: 900px;
+                }
+                .commentary{
+                    padding: 20px 10px;
+                    background-color: #efeeee;
+                    margin-bottom: 15px;
+                    h2{
+                        font-size: 1rem;
+                        color: $primary-color;
+                        font-weight: bold;
+                    }
+                    p{
+                        margin-top: 10px;
+                        color: $black;
+                        font-size: .9rem;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+    }
+}

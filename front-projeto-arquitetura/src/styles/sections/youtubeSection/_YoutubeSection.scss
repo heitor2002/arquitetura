@@ -1,0 +1,15 @@
+section.youtube-video {
+  background-color: $grey;
+  margin-top: 50px;
+  padding: 100px 0;
+  text-align: center;
+  iframe {
+    width: 100%;
+    max-width: 690px;
+    height: 420px;
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+}

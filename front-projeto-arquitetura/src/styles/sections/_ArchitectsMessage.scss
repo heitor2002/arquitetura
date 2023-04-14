@@ -1,0 +1,40 @@
+section.architects-message{
+    padding: 50px 0;
+    background-image: url("https://img.freepik.com/vetores-gratis/padrao-de-linhas-abstratas-planas-lineares_23-2148944144.jpg?w=740&t=st=1680119071~exp=1680119671~hmac=4bd02a429ba8bc0084fb3f5dc463dde2be34428f188f22c012284a1581f30276");
+    position: relative;
+    &::after{
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: #c93f26b7;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .container{
+        .message{
+            width: 100%;
+            max-width: 650px;
+            padding: 50px 2%;
+            background-color: $primary-color;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            color: $white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            h2{
+                text-transform: uppercase;
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            p{
+                width: 100%;
+                max-width: 400px;
+                margin-top: 30px;
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+section.contact-call{
+    @media screen and (max-width: 740px) {
+        padding: 100px 0;
+    }
+    .container{
+        .flex-contact-call{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .calling{
+                width: 100%;
+                max-width: 500px;
+                h2{
+                    font-size: 2rem;
+                    font-weight: 300;
+                    color: $black;
+                    span{
+                        color: $primary-color;
+                        font-weight: bold;
+                    }
+                }
+                button{
+                    width: 100%;
+                    max-width: 300px;
+                    padding: 15px 0;
+                    font-size: 1.2rem;
+                    background-color: $primary-color;
+                    border: 1px solid $primary-color;
+                    color: $white;
+                    margin-top: 30px;
+                    cursor: pointer;
+                    transition: .3s;
+                    &:hover{
+                        border: 1px solid $primary-color;
+                        background-color: white;
+                        color: $primary-color;
+                    }
+                }
+            }
+            img{
+                width: 356px;
+                height: 500px;
+                transform: scale(1.2);
+                position: relative;
+                bottom: 0;
+                z-index: 5;
+                @media screen and (max-width: 976px) {
+                    transform: scale(1.04);
+                }
+                @media screen and (max-width: 740px) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
