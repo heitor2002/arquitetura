@@ -52,6 +52,10 @@ const Orcamento = () => {
                 <input type="number" required />
               </div>
               <div className="inputs">
+                <label>Cidade</label>
+                <input type="text" required />
+              </div>
+              <div className="inputs">
                 <label>Assunto</label>
                 <input type="text" required />
               </div>
