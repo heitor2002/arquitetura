@@ -15,9 +15,19 @@ const Orcamento = () => {
 
   const onChangeInput = async e => setDataClient({...dataClient, [e.target.name]: e.target.value})
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async e => {
     e.preventDefault()
     console.log(dataClient)
+
+    try{
+      await fetch("http://localhost:5000/clients", {
+        method: "POST",
+        body: JSON.stringify(dataClient),
+        headers: {"Content-Type":"application/json"}
+      })
+    }catch(err){
+      console.log(err)
+    }
   }
   return (
     <>
@@ -79,7 +89,7 @@ const Orcamento = () => {
                 <label>
                   Mensagem <span>(opcional)</span>
                 </label>
-                <textarea name="message" onChange={onChangeInput} value={dataClient.message}></textarea>
+                <textarea name="message" onChange={onChangeInput} value={dataClient.message} style={{padding: "4px"}}></textarea>
               </div>
               <div className="inputs">
                 <input type="submit" />
