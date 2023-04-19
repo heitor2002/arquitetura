@@ -17,7 +17,7 @@ const Orcamento = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(dataClient.name)
+    console.log(dataClient)
   }
   return (
     <>
