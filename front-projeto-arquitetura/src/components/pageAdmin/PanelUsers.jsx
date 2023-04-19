@@ -2,6 +2,7 @@ import fetchApi from "@/hooks/fetchApi";
 
 const PanelUsers = () => {
   const { data } = fetchApi("http://localhost:5000/clients");
+  console.log(data)
   return (
     <>
       <div className="container-register">
@@ -12,7 +13,7 @@ const PanelUsers = () => {
               <div
                 className="registers"
                 style={{
-                  backgroundColor: user.read === true ? "#d4fcd4" : "white",
+                  backgroundColor: user.read === 1 ? "#d4fcd4" : "white",
                 }}
               >
                 <h5>
