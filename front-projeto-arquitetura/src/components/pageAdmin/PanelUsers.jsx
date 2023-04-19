@@ -1,7 +1,7 @@
 import fetchApi from "@/hooks/fetchApi";
 
 const PanelUsers = () => {
-  const { data } = fetchApi("http://localhost:3000/api/registers");
+  const { data } = fetchApi("http://localhost:5000/clients");
   return (
     <>
       <div className="container-register">
@@ -22,7 +22,7 @@ const PanelUsers = () => {
                   E-mail: <span>{user.email}</span>
                 </h5>
                 <h5>
-                  Celular: <span>{user.cell}</span>
+                  Celular: <span>{user.phone}</span>
                 </h5>
                 <h5>
                   Assunto: <span>{user.subject}</span>
