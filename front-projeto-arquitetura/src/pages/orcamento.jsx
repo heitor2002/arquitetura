@@ -1,8 +1,24 @@
 import Navigation from "@/components/headerIndex/Navigation";
 import Link from "next/link";
+import { useState } from "react";
 import { BsInstagram, BsFacebook, BsLinkedin } from "react-icons/bs";
 
 const Orcamento = () => {
+  const [dataClient, setDataClient] = useState({
+    name    : "",
+    email   : "",
+    phone   : "",
+    city    : "",
+    subject : "",
+    message : "",
+  })
+
+  const onChangeInput = async e => setDataClient({...dataClient, [e.target.name]: e.target.value})
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(dataClient.name)
+  }
   return (
     <>
       <div className="menu-page-budget">
@@ -37,33 +53,33 @@ const Orcamento = () => {
                 </div>
               </div>
             </div>
-            <form>
+            <form onSubmit={handleSubmit}>
               <h2>Entre em contato</h2>
               <div className="inputs">
                 <label>Nome</label>
-                <input type="text" required />
+                <input type="text" required name="name" onChange={onChangeInput} value={dataClient.name}/>
               </div>
               <div className="inputs">
                 <label>E-mail</label>
-                <input type="email" required />
+                <input type="email" name="email" required onChange={onChangeInput} value={dataClient.email} />
               </div>
               <div className="inputs">
                 <label>Celular</label>
-                <input type="number" required />
+                <input type="number" name="phone" required onChange={onChangeInput} value={dataClient.phone} />
               </div>
               <div className="inputs">
                 <label>Cidade</label>
-                <input type="text" required />
+                <input type="text" name="city" required onChange={onChangeInput} value={dataClient.city}/>
               </div>
               <div className="inputs">
                 <label>Assunto</label>
-                <input type="text" required />
+                <input type="text" name="subject" required onChange={onChangeInput} value={dataClient.subject}/>
               </div>
               <div className="inputs">
                 <label>
                   Mensagem <span>(opcional)</span>
                 </label>
-                <textarea></textarea>
+                <textarea name="message" onChange={onChangeInput} value={dataClient.message}></textarea>
               </div>
               <div className="inputs">
                 <input type="submit" />
