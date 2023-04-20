@@ -1,9 +1,12 @@
 import Navigation from "@/components/headerIndex/Navigation";
+import fetchApi from "@/hooks/fetchApi";
 import Link from "next/link";
 import { useState } from "react";
 import { BsInstagram, BsFacebook, BsLinkedin } from "react-icons/bs";
 
 const Orcamento = () => {
+  const { data } = fetchApi("http://localhost:5000/clients");
+  console.log(data)
   const [dataClient, setDataClient] = useState({
     name    : "",
     email   : "",
@@ -11,6 +14,7 @@ const Orcamento = () => {
     city    : "",
     subject : "",
     message : "",
+    read    : 0
   })
 
   const onChangeInput = async e => setDataClient({...dataClient, [e.target.name]: e.target.value})
@@ -20,13 +24,13 @@ const Orcamento = () => {
     console.log(dataClient)
 
     try{
-      await fetch("http://localhost:5000/clients", {
+      fetch("http://localhost:5000/clients", {
         method: "POST",
-        body: JSON.stringify(dataClient),
-        headers: {"Content-Type":"application/json"}
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(dataClient)
       })
     }catch(err){
-      console.log(err)
+      console.log("Erro")
     }
   }
   return (
