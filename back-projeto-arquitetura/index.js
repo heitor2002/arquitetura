@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors")
-const mysql = require ("mysql")
+const mysql = require ("mysql");
+const { threadId } = require("worker_threads");
 const app = express()
 const port = 5000;
 
@@ -21,6 +22,25 @@ const pool = mysql.createPool({
     password        : "",
     database        : "projeto_arquitetura"
 })
+
+//CRIANDO API
+
+app.get("/clients", (req, res) => {
+    pool.getConnection((err, connection) => {
+        if(err) throw err;
+        console.log(`connected as id ${threadId}`);
+
+        connection.query('SELECT * from data_clients', (err, rows) => {
+            connection.release();
+            if(!err){
+                res.send(rows)
+            }else{
+                res.send(err)
+            }
+        })
+    })
+})
+
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
