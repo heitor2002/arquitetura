@@ -42,9 +42,23 @@ app.get("/clients", (req, res) => {
         })
     })
 })
+//ADICIONAR CADASTRO
 
 app.post("/orcamento", (req, res) => {
-    console.log(req.body)
+    const params = req.body;
+    pool.getConnection((err, connection) => {
+        if(err) throw err;
+        console.log(`connected as id ${threadId}`);
+
+        connection.query('INSERT INTO data_clients SET ?', params, (err, rows) => {
+            connection.release();
+            if(!err){
+                res.send(rows)
+            }else{
+                res.send(err)
+            }
+        })
+    })
 })
 
 
