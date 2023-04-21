@@ -43,6 +43,10 @@ app.get("/clients", (req, res) => {
     })
 })
 
+app.post("/orcamento", (req, res) => {
+    console.log(req.body)
+})
+
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
