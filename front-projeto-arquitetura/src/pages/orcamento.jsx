@@ -1,38 +1,36 @@
 import Navigation from "@/components/headerIndex/Navigation";
-import fetchApi from "@/hooks/fetchApi";
 import Link from "next/link";
 import { useState } from "react";
 import { BsInstagram, BsFacebook, BsLinkedin } from "react-icons/bs";
 
 const Orcamento = () => {
-  const { data } = fetchApi("http://localhost:5000/clients");
-  console.log(data)
   const [dataClient, setDataClient] = useState({
-    name    : "",
-    email   : "",
-    phone   : "",
-    city    : "",
-    subject : "",
-    message : "",
-    read    : 0
-  })
+    name: "",
+    email: "",
+    phone: "",
+    city: "",
+    subject: "",
+    message: "",
+    read: 0,
+  });
 
-  const onChangeInput = async e => setDataClient({...dataClient, [e.target.name]: e.target.value})
+  const onChangeInput = async (e) =>
+    setDataClient({ ...dataClient, [e.target.name]: e.target.value });
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-    console.log(dataClient)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(dataClient);
 
-    try{
-      fetch("http://localhost:5000/clients", {
+    try {
+      fetch("http://localhost:5000/orcamento", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(dataClient)
-      })
-    }catch(err){
-      console.log("Erro")
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataClient),
+      });
+    } catch (err) {
+      console.log("Erro");
     }
-  }
+  };
   return (
     <>
       <div className="menu-page-budget">
@@ -71,29 +69,64 @@ const Orcamento = () => {
               <h2>Entre em contato</h2>
               <div className="inputs">
                 <label>Nome</label>
-                <input type="text" required name="name" onChange={onChangeInput} value={dataClient.name}/>
+                <input
+                  type="text"
+                  required
+                  name="name"
+                  onChange={onChangeInput}
+                  value={dataClient.name}
+                />
               </div>
               <div className="inputs">
                 <label>E-mail</label>
-                <input type="email" name="email" required onChange={onChangeInput} value={dataClient.email} />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  onChange={onChangeInput}
+                  value={dataClient.email}
+                />
               </div>
               <div className="inputs">
                 <label>Celular</label>
-                <input type="number" name="phone" required onChange={onChangeInput} value={dataClient.phone} />
+                <input
+                  type="number"
+                  name="phone"
+                  required
+                  onChange={onChangeInput}
+                  value={dataClient.phone}
+                />
               </div>
               <div className="inputs">
                 <label>Cidade</label>
-                <input type="text" name="city" required onChange={onChangeInput} value={dataClient.city}/>
+                <input
+                  type="text"
+                  name="city"
+                  required
+                  onChange={onChangeInput}
+                  value={dataClient.city}
+                />
               </div>
               <div className="inputs">
                 <label>Assunto</label>
-                <input type="text" name="subject" required onChange={onChangeInput} value={dataClient.subject}/>
+                <input
+                  type="text"
+                  name="subject"
+                  required
+                  onChange={onChangeInput}
+                  value={dataClient.subject}
+                />
               </div>
               <div className="inputs">
                 <label>
                   Mensagem <span>(opcional)</span>
                 </label>
-                <textarea name="message" onChange={onChangeInput} value={dataClient.message} style={{padding: "4px"}}></textarea>
+                <textarea
+                  name="message"
+                  onChange={onChangeInput}
+                  value={dataClient.message}
+                  style={{ padding: "4px" }}
+                ></textarea>
               </div>
               <div className="inputs">
                 <input type="submit" />
