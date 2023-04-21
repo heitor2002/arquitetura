@@ -2,7 +2,21 @@ import fetchApi from "@/hooks/fetchApi";
 
 const PanelUsers = () => {
   const { data } = fetchApi("http://localhost:5000/clients");
-  console.log(data)
+  console.log(data);
+
+  const handleDelete = async (id) => {
+    console.log(id);
+    try{
+      fetch(`http://localhost:5000/clients/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+      }).then(() => {
+        window.location.reload()
+      })
+    }catch(err){
+      console.log("erro")
+    }
+  };
   return (
     <>
       <div className="container-register">
@@ -32,7 +46,12 @@ const PanelUsers = () => {
                   Mensagem: <span>{user.message}</span>
                 </h5>
                 <div className="buttons">
-                  <button className="delete-message">Deletar cadastro</button>
+                  <button
+                    className="delete-message"
+                    onClick={() => handleDelete(user.id)}
+                  >
+                    Deletar cadastro
+                  </button>
                   {!user.read && (
                     <button className="read-message">Marcar como lida</button>
                   )}
