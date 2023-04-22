@@ -67,7 +67,7 @@ app.post("/orcamento", (req, res) => {
 
 //DELETAR CADASTRO
 
-app.delete("/:id", (req, res) => {
+app.delete("/clients/:id", (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
@@ -87,13 +87,13 @@ app.delete("/:id", (req, res) => {
 
 //ATUALIZAR CADASTRO
 
-app.put("/orcamento", (req, res) => {
-  const { name, email, phone, city, subject, message, read } = req.body;
+app.put("/clients", (req, res) => {
+  const { id, name, email, phone, city, subject, message, read } = req.body;
   pool.getConnection((err, connection) => {
     if (err) throw err;
     console.log(`connected as id ${threadId}`);
 
-    connection.query("UPDATE data_clients SET read = ?", [read], (err, rows) => {
+    connection.query("UPDATE data_clients SET read = ? WHERE id = ?", [read, id], (err, rows) => {
       connection.release();
       if (!err) {
         res.send(rows);
