@@ -74,14 +74,33 @@ app.delete("/:id", (req, res) => {
       "DELETE from data_clients WHERE id = ?",
       [req.params.id],
       (err, rows) => {
-        connection.release()
-        if(!err){
-            res.send(`Cliente ID: ${[req.params.id]} foi removido com sucesso!`)
-        }else{
-            res.send(`Cliente ID: ${[req.params.id]} não foi removido!`)
+        connection.release();
+        if (!err) {
+          res.send(`Cliente ID: ${[req.params.id]} foi removido com sucesso!`);
+        } else {
+          res.send(`Cliente ID: ${[req.params.id]} não foi removido!`);
         }
       }
     );
+  });
+});
+
+//ATUALIZAR CADASTRO
+
+app.put("/orcamento", (req, res) => {
+  const { name, email, phone, city, subject, message, read } = req.body;
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    console.log(`connected as id ${threadId}`);
+
+    connection.query("UPDATE data_clients SET read = ?", [read], (err, rows) => {
+      connection.release();
+      if (!err) {
+        res.send(rows);
+      } else {
+        res.send(err);
+      }
+    });
   });
 });
 
