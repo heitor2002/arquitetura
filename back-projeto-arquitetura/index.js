@@ -67,7 +67,7 @@ app.post("/orcamento", (req, res) => {
 
 //DELETAR CADASTRO
 
-app.delete("/clients/:id", (req, res) => {
+app.delete("/:id", (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(

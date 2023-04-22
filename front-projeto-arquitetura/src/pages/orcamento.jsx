@@ -14,6 +14,11 @@ const Orcamento = () => {
     read: 0,
   });
 
+  const [response, setResponse] = useState({
+    type: "",
+    message: "",
+  });
+
   const onChangeInput = async (e) =>
     setDataClient({ ...dataClient, [e.target.name]: e.target.value });
 
@@ -22,13 +27,30 @@ const Orcamento = () => {
     console.log(dataClient);
 
     try {
-      fetch("http://localhost:5000/orcamento", {
+      const res = await fetch("http://localhost:5000/orcamento", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataClient),
+      }).then(() => {
+        setResponse({
+          type: "sucess",
+          message: "Cadastro enviado com sucesso!",
+        });
+        setDataClient({
+          name: "",
+          email: "",
+          phone: "",
+          city: "",
+          subject: "",
+          message: "",
+          read: 0,
+        });
       });
     } catch (err) {
-      console.log("Erro");
+      setResponse({
+        type: "err",
+        message: "Ocorreu um erro, tente mais tarde",
+      });
     }
   };
   return (
@@ -43,6 +65,32 @@ const Orcamento = () => {
           <div className="form">
             <div className="personal-information">
               <div className="container-personal-information">
+                {response.type === "sucess" && (
+                  <h2
+                    style={{
+                      backgroundColor: "#60bf70",
+                      padding: "10px",
+                      color: "white",
+                      fontSize: "1.5rem",
+                      marginBottom: "10px"
+                    }}
+                  >
+                    {response.message}
+                  </h2>
+                )}
+                {response.type === "err" && (
+                  <h2
+                    style={{
+                      backgroundColor: "#c93e34",
+                      padding: "10px",
+                      color: "white",
+                      fontSize: "1.5rem",
+                      marginBottom: "10px"
+                    }}
+                  >
+                    {response.message}
+                  </h2>
+                )}
                 <h2>Atendimento a clientes em diversas áreas.</h2>
                 <p>
                   Civil Estrutural | Arquitetônico | Mecânico Industrial |
@@ -129,7 +177,7 @@ const Orcamento = () => {
                 ></textarea>
               </div>
               <div className="inputs">
-                <input type="submit" />
+                <input type="submit" value={"Enviar"} />
               </div>
             </form>
           </div>
