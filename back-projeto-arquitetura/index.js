@@ -88,19 +88,24 @@ app.delete("/clients/:id", (req, res) => {
 //ATUALIZAR CADASTRO
 
 app.put("/clients", (req, res) => {
-  const { id, name, email, phone, city, subject, message, read } = req.body;
+  const { id, name, email, phone, subject, message, read } = req.body;
+  console.log(id, read);
   pool.getConnection((err, connection) => {
     if (err) throw err;
     console.log(`connected as id ${threadId}`);
 
-    connection.query("UPDATE data_clients SET read = ? WHERE id = ?", [read, id], (err, rows) => {
-      connection.release();
-      if (!err) {
-        res.send(rows);
-      } else {
-        res.send(err);
+    connection.query(
+      "UPDATE data_clients SET `read` = ? WHERE id =?",
+      [read,id],
+      (err, rows) => {
+        connection.release();
+        if (!err) {
+          res.send(rows);
+        } else {
+          res.send(err);
+        }
       }
-    });
+    );
   });
 });
 
