@@ -29,7 +29,7 @@ const pool = mysql.createPool({
 });
 
 //CRIANDO API
-
+//API CLIENTES CADASTRADOS
 app.get("/clients", (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
@@ -45,6 +45,22 @@ app.get("/clients", (req, res) => {
     });
   });
 });
+
+//API PORTFOLIO
+
+app.get("/portfolio-edit", (req, res) => {
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    connection.query("SELECT * from data_portfolio", (err, rows) => {
+      connection.release();
+      if(!err){
+        res.send(rows)
+      }else{
+        res.send(err)
+      }
+    })
+  })
+})
 
 //ADICIONAR CADASTRO
 
