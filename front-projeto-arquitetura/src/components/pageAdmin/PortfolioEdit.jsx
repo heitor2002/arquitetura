@@ -104,12 +104,13 @@ const ElementsPortfolio = () => {
             }
           })
           .map((item) => {
-            const { title, description, imgUrl } = item;
+            const { id, title, description, imgUrl } = item;
             return (
               <FormEdition
                 title={title}
                 description={description}
                 imgUrl={imgUrl}
+                id={id}
               />
             );
           })}
