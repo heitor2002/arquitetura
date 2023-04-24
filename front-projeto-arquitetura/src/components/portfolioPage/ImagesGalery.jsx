@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 const ImagesGalery = () => {
-  const { data } = FetchApi("http://localhost:3000/api/galery");
+  const { data } = FetchApi("http://localhost:5000/portfolio-edit");
 
   const [moreImages, setMoreImages] = useState(7);
 

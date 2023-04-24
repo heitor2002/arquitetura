@@ -1135,7 +1135,11 @@ section.panel .container .container-register .registers .buttons .delete-message
 section.panel .container .container-register .registers .buttons .delete-message:hover {
   background-color: #9b1d1d;
 }
-section.panel .add-comments {
+section.panel .inputs-search {
+  display: flex;
+  flex-direction: column;
+}
+section.panel .inputs-search .add-comments {
   width: 100%;
   max-width: 300px;
   margin-top: 15px;
@@ -1145,6 +1149,12 @@ section.panel .add-comments {
   border: 0;
   background-color: #e85941;
   color: white;
+}
+section.panel .inputs-search input {
+  margin-top: 20px;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid #ccc;
 }
 section.panel form.form-portfolio {
   width: 100%;
@@ -1208,18 +1218,49 @@ section.panel .galery h5 span {
   color: #1d1c1b;
   font-weight: 300;
 }
-section.panel .galery .buttons-galery {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-  gap: 10px;
+section.panel .galery form.edit-post {
+  padding: 20px 0;
+  flex-direction: column;
+  gap: 15px;
+  display: none;
 }
-section.panel .galery .buttons-galery button {
-  width: 100%;
+section.panel .galery form.edit-post div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+section.panel .galery form.edit-post div label {
+  font-size: 1rem;
+  color: #1d1c1b;
+}
+section.panel .galery form.edit-post div input {
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+section.panel .galery form.edit-post div input[type=submit] {
+  border: 0;
+  background-color: #62b555;
+  color: white;
   padding: 10px 0;
   cursor: pointer;
+}
+section.panel .galery button.edit-button {
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 20px;
+  border: 0;
+  background-color: #e85941;
+  color: white;
+  cursor: pointer;
+}
+section.panel .galery button.delete-project {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #be2424;
   border: 0;
   color: white;
+  cursor: pointer;
+  display: none;
 }
 section.panel form.form-social-proof {
   width: 100%;

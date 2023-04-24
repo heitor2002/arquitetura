@@ -81,6 +81,24 @@ app.post("/orcamento", (req, res) => {
   });
 });
 
+//ADICIONAR NOVO PROJETO
+
+app.post("/portfolio-edit", (req, res) => {
+  const params = req.body;
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+
+    connection.query("INSERT INTO data_portfolio SET ?", params, (err, rows) => {
+      connection.release();
+      if(!err){
+        res.send("Novo projeto cadastrado com sucesso")
+      }else{
+        res.send(err)
+      }
+    })
+  })
+})
+
 //DELETAR CADASTRO
 
 app.delete("/clients/:id", (req, res) => {

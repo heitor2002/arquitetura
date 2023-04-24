@@ -1,8 +1,22 @@
 import fetchApi from "@/hooks/fetchApi";
+import { useState } from "react";
+import FormEdition from "./FormEdition";
 
 const ElementsPortfolio = () => {
-  const { data } = fetchApi("http://localhost:3000/api/galery");
-  console.log(data);
+  const { data } = fetchApi("http://localhost:5000/portfolio-edit");
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const [portfolioData, setPortfolioData] = useState({
+    title: "",
+    description: "",
+    imgUrl: "",
+  });
+
+  const onChangeInput = (e) => {
+    setPortfolioData({ ...portfolioData, [e.target.name]: e.target.value });
+  };
+
   const activeForm = () => {
     const form = document.querySelector(".form-portfolio");
     const formCancel = document.querySelector(".form-cancel");
@@ -15,52 +29,90 @@ const ElementsPortfolio = () => {
     form.style.display = "none";
     formCancel.style.display = "none";
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(portfolioData);
+
+    try {
+      fetch("http://localhost:5000/portfolio-edit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(portfolioData),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <div className="container-register">
         <h2>Editar portfólio:</h2>
-        <button className="add-comments" onClick={activeForm}>
-          Adicionar novo projeto
-        </button>
-        <form className="form-portfolio">
+        <div className="inputs-search">
+          <button className="add-comments" onClick={activeForm}>
+            Adicionar novo projeto
+          </button>
+          <input
+            type="text"
+            placeholder="Pesquisar título do projeto"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <form className="form-portfolio" onSubmit={handleSubmit}>
           <div>
             <label>Título:</label>
-            <input type="text" />
+            <input
+              type="text"
+              name="title"
+              onChange={onChangeInput}
+              value={portfolioData.title}
+            />
           </div>
           <div>
             <label>Descrição:</label>
-            <textarea name="description"></textarea>
+            <textarea
+              name="description"
+              onChange={onChangeInput}
+              value={portfolioData.description}
+            ></textarea>
           </div>
           <div>
             <label>URL da imagem:</label>
-            <input type="text" />
+            <input
+              type="text"
+              name="imgUrl"
+              onChange={onChangeInput}
+              value={portfolioData.imgUrl}
+            />
           </div>
           <div>
-            <input type="submit" value={"Enviar"} />
+            <input type="submit" value={"Enviar"} name="acao" />
           </div>
         </form>
         <button className="form-cancel" onClick={desactiveForm}>
           Cancelar
         </button>
-        {data.map((item) => {
-          return (
-            <div className="galery">
-              <h5>
-                Title: <span>{item.title}</span>
-              </h5>
-              <h5>
-                Descrição: <span>{item.description}</span>
-              </h5>
-              <h5>
-                URL da imagem: <span>{item.imgUrl}</span>
-              </h5>
-              <div className="buttons-galery">
-                <button style={{backgroundColor: "#ce3333"}}>Deletar Publicação</button>
-                <button style={{backgroundColor: "#4ac9b4"}}>Editar Publicação</button>
-              </div>
-            </div>
-          );
-        })}
+        {data
+          .filter((value) => {
+            if (searchTerm == "") {
+              return value;
+            } else if (
+              value.title.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return value;
+            }
+          })
+          .map((item) => {
+            const { title, description, imgUrl } = item;
+            return (
+              <FormEdition
+                title={title}
+                description={description}
+                imgUrl={imgUrl}
+              />
+            );
+          })}
       </div>
     </>
   );
