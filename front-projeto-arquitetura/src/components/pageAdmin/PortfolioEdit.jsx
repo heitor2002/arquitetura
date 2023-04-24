@@ -30,10 +30,7 @@ const ElementsPortfolio = () => {
     formCancel.style.display = "none";
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(portfolioData);
-
+  const handleSubmit = async () => {
     try {
       fetch("http://localhost:5000/portfolio-edit", {
         method: "POST",
