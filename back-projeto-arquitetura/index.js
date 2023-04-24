@@ -143,6 +143,21 @@ app.put("/clients", (req, res) => {
   });
 });
 
+app.put("/portfolio-edit", (req, res) => {
+  const { id, title, description, imgUrl } = req.body;
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    connection.query("UPDATE data_portfolio SET `title` = ?, `description` = ?, `imgUrl` = ? WHERE id = ?", [title, description, imgUrl, id], (err, rows) => {
+      connection.release()
+      if(!err){
+        res.send(rows);
+      }else{
+        res.send(err)
+      }
+    })
+  })
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

@@ -22,6 +22,21 @@ const FormEdition = (props) => {
     setEditPortfolio({ ...editPortfolio, [e.target.name]: e.target.value });
   };
 
+  //ENVIO DO FORMULÁRIO PARA DB.
+
+  const handleSubmit = async (id, title, description, imgUrl) => {
+    try{
+      fetch("http://localhost:5000/portfolio-edit", {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({id,title,description, imgUrl})
+      })
+    }catch(err){
+      console.log(err)
+    }
+
+  }
+
   return (
     <>
       <div className="galery">
@@ -35,7 +50,7 @@ const FormEdition = (props) => {
           URL da imagem: <span>{props.imgUrl}</span>
         </h5>
         <button className="edit-button">Editar projeto</button>
-        <form className="edit-post">
+        <form className="edit-post" onSubmit={() => handleSubmit(props.id, editPortfolio.title, editPortfolio.description, editPortfolio.imgUrl)}>
           <div>
             <label>Título:</label>
             <input
