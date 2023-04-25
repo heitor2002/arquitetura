@@ -126,7 +126,7 @@ app.post("/social-proof", (req, res) => {
     if (err) throw err;
 
     connection.query(
-      "INSERT INTO data_portfolio SET ?",
+      "INSERT INTO data_social SET ?",
       params,
       (err, rows) => {
         connection.release();
@@ -186,7 +186,7 @@ app.delete("/social-proof/:id", (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
     connection.query(
-      "DELETE from data_portfolio WHERE id = ?",
+      "DELETE from data_social WHERE id = ?",
       [req.params.id],
       (err, rows) => {
         connection.release();

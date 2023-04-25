@@ -5,6 +5,7 @@ const FormEdition = (props) => {
   const editButton = document.querySelectorAll(".edit-button");
   const editForm = document.querySelectorAll(".edit-post");
   const cancelDeleteButton = document.querySelectorAll(".buttons-cancel-delete-project");
+  const cancelButton = document.querySelectorAll(".cancel-project")
 
   editButton.forEach((item, index) => {
     item.addEventListener("click", () => {
@@ -12,6 +13,13 @@ const FormEdition = (props) => {
       cancelDeleteButton[index].style.display = "flex"
     });
   });
+
+  cancelButton.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      editForm[index].style.display = "none"
+      cancelDeleteButton[index].style.display = "none"
+    })
+  })
 
   const [editPortfolio, setEditPortfolio] = useState({
     title: props.title,
