@@ -119,6 +119,20 @@ app.delete("/clients/:id", (req, res) => {
   });
 });
 
+app.delete("/portfolio-edit/:id", (req, res) => {
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    connection.query("DELETE from data_portfolio WHERE id = ?", [req.params.id], (err, rows) => {
+      connection.release();
+      if(!err){
+        res.send(`Projeto id: ${[req.params.id]} foi removido com sucesso!`);
+      }else{
+        res.send(`Erro ao remover projeto id: ${[req.params.id]}!`)
+      }
+    })
+  })
+})
+
 //ATUALIZAR CADASTRO
 
 app.put("/clients", (req, res) => {

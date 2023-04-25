@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { BsFillTrashFill } from 'react-icons/bs';
 
 const FormEdition = (props) => {
   const editButton = document.querySelectorAll(".edit-button");
   const editForm = document.querySelectorAll(".edit-post");
-  const deleteButton = document.querySelectorAll(".delete-project");
+  const cancelDeleteButton = document.querySelectorAll(".buttons-cancel-delete-project");
 
   editButton.forEach((item, index) => {
     item.addEventListener("click", () => {
       editForm[index].style.display = "flex"
-      deleteButton[index].style.display = "block"
+      cancelDeleteButton[index].style.display = "flex"
     });
   });
 
@@ -22,7 +23,7 @@ const FormEdition = (props) => {
     setEditPortfolio({ ...editPortfolio, [e.target.name]: e.target.value });
   };
 
-  //ENVIO DO FORMULÁRIO PARA DB.
+  //EDIÇÃO DO FORMULÁRIO PARA DB.
 
   const handleSubmit = async (id, title, description, imgUrl) => {
     try{
@@ -35,6 +36,21 @@ const FormEdition = (props) => {
       console.log(err)
     }
 
+  }
+
+  //DELETAR PROJETO DO BANCO DE DADOS
+
+  const handleDelete = async (id) => {
+    try{
+      fetch(`http://localhost:5000/portfolio-edit/${id}`, {
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"}
+      }).then(() => {
+        window.location.reload()
+      })
+    }catch(err){
+      console.log(err)
+    }
   }
 
   return (
@@ -82,7 +98,10 @@ const FormEdition = (props) => {
             <input type="submit" value={"Confirmar atualização"} />
           </div>
         </form>
-        <button className="delete-project">Deletar Projeto</button>
+        <div className="buttons-cancel-delete-project">
+        <button className="cancel-project">Cancelar atualização</button>
+        <button className="delete-project" onClick={() => handleDelete(props.id)}><BsFillTrashFill /></button>
+        </div>
       </div>
     </>
   );

@@ -41,6 +41,7 @@ const ElementsPortfolio = () => {
       console.log(err);
     }
   };
+
   return (
     <>
       <div className="container-register">
@@ -64,6 +65,7 @@ const ElementsPortfolio = () => {
               name="title"
               onChange={onChangeInput}
               value={portfolioData.title}
+              placeholder="Título do projeto"
             />
           </div>
           <div>
@@ -72,6 +74,7 @@ const ElementsPortfolio = () => {
               name="description"
               onChange={onChangeInput}
               value={portfolioData.description}
+              placeholder="Descrição do projeto"
             ></textarea>
           </div>
           <div>
@@ -81,6 +84,7 @@ const ElementsPortfolio = () => {
               name="imgUrl"
               onChange={onChangeInput}
               value={portfolioData.imgUrl}
+              placeholder="URL da imagem do projeto"
             />
           </div>
           <div>
