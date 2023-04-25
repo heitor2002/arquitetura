@@ -1301,11 +1301,13 @@ section.panel form.form-social-proof div label {
 }
 section.panel form.form-social-proof div input {
   padding: 5px;
+  border: 1px solid #ccc;
 }
 section.panel form.form-social-proof div textarea {
   height: 100px;
   padding: 5px;
   resize: none;
+  border: 1px solid #ccc;
 }
 section.panel form.form-social-proof div input[type=submit] {
   padding: 5px;
@@ -1338,7 +1340,7 @@ section.panel .messages p {
 section.panel .messages .buttons {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: space-between;
   margin-top: 15px;
   gap: 15px;
@@ -1365,6 +1367,43 @@ section.panel .messages .buttons button.delete-message {
 section.panel .messages .buttons button.edit-message {
   background-color: #4ac9b4;
   border: 1px solid #4ac9b4;
+}
+section.panel .messages form.edit-form {
+  margin-top: 15px;
+  display: none;
+}
+section.panel .messages form.edit-form div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  gap: 5px;
+}
+section.panel .messages form.edit-form div label {
+  font-size: 1rem;
+  color: #1d1c1b;
+}
+section.panel .messages form.edit-form div input {
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+section.panel .messages form.edit-form div input[type=submit] {
+  background-color: #e85941;
+  border: 1px solid #e85941;
+  color: white;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+section.panel .messages form.edit-form div input[type=submit]:hover {
+  background-color: white;
+  color: #e85941;
+  cursor: pointer;
+}
+section.panel .messages form.edit-form div textarea {
+  width: 100%;
+  height: 100px;
+  padding: 5px;
+  resize: none;
+  border: 1px solid #ccc;
 }
 
 .login-background {
