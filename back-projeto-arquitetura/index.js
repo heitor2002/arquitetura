@@ -50,17 +50,32 @@ app.get("/clients", (req, res) => {
 
 app.get("/portfolio-edit", (req, res) => {
   pool.getConnection((err, connection) => {
-    if(err) throw err;
+    if (err) throw err;
     connection.query("SELECT * from data_portfolio", (err, rows) => {
       connection.release();
-      if(!err){
-        res.send(rows)
-      }else{
-        res.send(err)
+      if (!err) {
+        res.send(rows);
+      } else {
+        res.send(err);
       }
-    })
-  })
-})
+    });
+  });
+});
+
+//API PROVA SOCIAL
+app.get("/social-proof", (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    connection.query("SELECT * from data_social", (err, rows) => {
+      connection.release();
+      if (!err) {
+        res.send(rows);
+      } else {
+        res.send(err);
+      }
+    });
+  });
+});
 
 //ADICIONAR CADASTRO
 
@@ -86,18 +101,44 @@ app.post("/orcamento", (req, res) => {
 app.post("/portfolio-edit", (req, res) => {
   const params = req.body;
   pool.getConnection((err, connection) => {
-    if(err) throw err;
+    if (err) throw err;
 
-    connection.query("INSERT INTO data_portfolio SET ?", params, (err, rows) => {
-      connection.release();
-      if(!err){
-        res.send("Novo projeto cadastrado com sucesso")
-      }else{
-        res.send(err)
+    connection.query(
+      "INSERT INTO data_portfolio SET ?",
+      params,
+      (err, rows) => {
+        connection.release();
+        if (!err) {
+          res.send("Novo projeto cadastrado com sucesso");
+        } else {
+          res.send(err);
+        }
       }
-    })
-  })
-})
+    );
+  });
+});
+
+//ADICIONAR PROVA SOCIAL
+
+app.post("/social-proof", (req, res) => {
+  const params = req.body;
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+
+    connection.query(
+      "INSERT INTO data_portfolio SET ?",
+      params,
+      (err, rows) => {
+        connection.release();
+        if (!err) {
+          res.send("Novo projeto cadastrado com sucesso");
+        } else {
+          res.send(err);
+        }
+      }
+    );
+  });
+});
 
 //DELETAR CADASTRO
 
@@ -119,19 +160,45 @@ app.delete("/clients/:id", (req, res) => {
   });
 });
 
+//DELETAR PROJETO DO PORTFÓLIO
+
 app.delete("/portfolio-edit/:id", (req, res) => {
   pool.getConnection((err, connection) => {
-    if(err) throw err;
-    connection.query("DELETE from data_portfolio WHERE id = ?", [req.params.id], (err, rows) => {
-      connection.release();
-      if(!err){
-        res.send(`Projeto id: ${[req.params.id]} foi removido com sucesso!`);
-      }else{
-        res.send(`Erro ao remover projeto id: ${[req.params.id]}!`)
+    if (err) throw err;
+    connection.query(
+      "DELETE from data_portfolio WHERE id = ?",
+      [req.params.id],
+      (err, rows) => {
+        connection.release();
+        if (!err) {
+          res.send(`Projeto id: ${[req.params.id]} foi removido com sucesso!`);
+        } else {
+          res.send(`Erro ao remover projeto id: ${[req.params.id]}!`);
+        }
       }
-    })
-  })
-})
+    );
+  });
+});
+
+//DELETAR PROVA SOCIAL
+
+app.delete("/social-proof/:id", (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    connection.query(
+      "DELETE from data_portfolio WHERE id = ?",
+      [req.params.id],
+      (err, rows) => {
+        connection.release();
+        if (!err) {
+          res.send(`Prova social id: ${[req.params.id]} foi removida com sucesso!`);
+        } else {
+          res.send(`Erro ao remover prova social id: ${[req.params.id]}!`);
+        }
+      }
+    );
+  });
+});
 
 //ATUALIZAR CADASTRO
 
@@ -144,7 +211,7 @@ app.put("/clients", (req, res) => {
 
     connection.query(
       "UPDATE data_clients SET `read` = ? WHERE id =?",
-      [read,id],
+      [read, id],
       (err, rows) => {
         connection.release();
         if (!err) {
@@ -160,16 +227,20 @@ app.put("/clients", (req, res) => {
 app.put("/portfolio-edit", (req, res) => {
   const { id, title, description, imgUrl } = req.body;
   pool.getConnection((err, connection) => {
-    if(err) throw err;
-    connection.query("UPDATE data_portfolio SET `title` = ?, `description` = ?, `imgUrl` = ? WHERE id = ?", [title, description, imgUrl, id], (err, rows) => {
-      connection.release()
-      if(!err){
-        res.send(rows);
-      }else{
-        res.send(err)
+    if (err) throw err;
+    connection.query(
+      "UPDATE data_portfolio SET `title` = ?, `description` = ?, `imgUrl` = ? WHERE id = ?",
+      [title, description, imgUrl, id],
+      (err, rows) => {
+        connection.release();
+        if (!err) {
+          res.send(rows);
+        } else {
+          res.send(err);
+        }
       }
-    })
-  })
+    );
+  });
 });
 
 app.listen(port, () => {
