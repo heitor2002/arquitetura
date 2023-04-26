@@ -23,12 +23,27 @@ const EditSocialProof = (props) => {
   })
 
   const [dataEditForm, setDataEditForm] = useState({
+    id: props.id,
     name: props.name,
     message: props.message
   })
 
   const onChangeInput = (e) => {
     setDataEditForm({...dataEditForm, [e.target.name]:e.target.value})
+  }
+
+  const handleSubmitUpdateForm = async () => {
+    try{
+      fetch("http://localhost:5000/social-proof", {
+        method: "PUT",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(dataEditForm)
+      }).then(() => {
+        window.location.reload()
+      })
+    }catch(err){
+      console.log(err)
+    }
   }
   return (
     <>
@@ -41,7 +56,7 @@ const EditSocialProof = (props) => {
           </button>
           <button className="edit-message">Editar</button>
         </div>
-        <form className="edit-form">
+        <form className="edit-form" onSubmit={handleSubmitUpdateForm}>
           <div>
             <label>Nome</label>
             <input type="text" name="name" value={dataEditForm.name} onChange={onChangeInput}/>
