@@ -1419,6 +1419,7 @@ section.panel .messages button.cancel-edit-proof {
   color: white;
   cursor: pointer;
   transition: 0.3s;
+  display: none;
 }
 section.panel .messages button.cancel-edit-proof:hover {
   background-color: white;
