@@ -266,6 +266,11 @@ app.put("/social-proof", (req, res) => {
   });
 });
 
+const user = {
+  username: "user",
+  password: "1234"
+}
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
