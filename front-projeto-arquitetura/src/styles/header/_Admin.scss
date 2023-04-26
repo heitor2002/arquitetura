@@ -314,11 +314,12 @@ section.panel {
       button.delete-message,
       button.edit-message {
         width: 100%;
-        padding: 10px;
+        padding: 5px 0;
         border: 0;
         color: white;
         cursor: pointer;
         transition: 0.1s;
+        font-size: 1.2rem;
         &:hover {
           background-color: white;
           border: 1px solid $primary-color;
@@ -329,7 +330,6 @@ section.panel {
         background-color: #9b1d1d;
         border: 1px solid #9b1d1d;
         width: 30%;
-        font-size: 1.3rem;
       }
       button.edit-message {
         background-color: #4ac9b4;
@@ -353,15 +353,16 @@ section.panel {
           border: 1px solid #ccc;
         }
         input[type="submit"]{
-          background-color: $primary-color;
-          border: 1px solid $primary-color;
+          background-color: $green;
+          border: 1px solid $green;
           color: white;
           font-size: 1.1rem;
           transition: .3s;
+          cursor: pointer;
           &:hover{
             background-color: white;
             color: $primary-color;
-            cursor: pointer;
+            border: 1px solid $primary-color;
           }
         }
         textarea{
@@ -371,6 +372,23 @@ section.panel {
           resize: none;
           border: 1px solid #ccc;
         }
+      }
+    }
+    button.cancel-edit-proof{
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px 0;
+      font-size: 1rem;
+      font-weight: 300;
+      background-color: $primary-color;
+      border: 1px solid $primary-color;
+      color: white;
+      cursor: pointer;
+      transition: .3s;
+      &:hover{
+        background-color: white;
+        color: $primary-color;
+        border: 1px solid $primary-color;
       }
     }
   }

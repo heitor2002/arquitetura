@@ -1348,11 +1348,12 @@ section.panel .messages .buttons {
 section.panel .messages .buttons button.delete-message,
 section.panel .messages .buttons button.edit-message {
   width: 100%;
-  padding: 10px;
+  padding: 5px 0;
   border: 0;
   color: white;
   cursor: pointer;
   transition: 0.1s;
+  font-size: 1.2rem;
 }
 section.panel .messages .buttons button.delete-message:hover,
 section.panel .messages .buttons button.edit-message:hover {
@@ -1364,7 +1365,6 @@ section.panel .messages .buttons button.delete-message {
   background-color: #9b1d1d;
   border: 1px solid #9b1d1d;
   width: 30%;
-  font-size: 1.3rem;
 }
 section.panel .messages .buttons button.edit-message {
   background-color: #4ac9b4;
@@ -1389,16 +1389,17 @@ section.panel .messages form.edit-form div input {
   border: 1px solid #ccc;
 }
 section.panel .messages form.edit-form div input[type=submit] {
-  background-color: #e85941;
-  border: 1px solid #e85941;
+  background-color: #62b555;
+  border: 1px solid #62b555;
   color: white;
   font-size: 1.1rem;
   transition: 0.3s;
+  cursor: pointer;
 }
 section.panel .messages form.edit-form div input[type=submit]:hover {
   background-color: white;
   color: #e85941;
-  cursor: pointer;
+  border: 1px solid #e85941;
 }
 section.panel .messages form.edit-form div textarea {
   width: 100%;
@@ -1406,6 +1407,23 @@ section.panel .messages form.edit-form div textarea {
   padding: 5px;
   resize: none;
   border: 1px solid #ccc;
+}
+section.panel .messages button.cancel-edit-proof {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 300;
+  background-color: #e85941;
+  border: 1px solid #e85941;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+section.panel .messages button.cancel-edit-proof:hover {
+  background-color: white;
+  color: #e85941;
+  border: 1px solid #e85941;
 }
 
 .login-background {

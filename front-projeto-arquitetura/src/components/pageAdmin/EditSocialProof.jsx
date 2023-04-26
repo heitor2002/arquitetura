@@ -1,14 +1,17 @@
+import { useEffect } from "react";
 import { BsFillTrashFill } from "react-icons/bs";
 
 const EditSocialProof = (props) => {
-  const editButton = document.querySelectorAll(".edit-message");
-  const editForm = document.querySelectorAll(".edit-form");
-
-  editButton.forEach((item, index) => {
-    item.addEventListener("click", () => {
-      editForm[index].style.display = "block";
+  useEffect(() => {
+    const editButton = document.querySelectorAll(".edit-message");
+    const editForm = document.querySelectorAll(".edit-form");
+  
+    editButton.forEach((item, index) => {
+      item.addEventListener("click", () => {
+        editForm[index].style.display = "block";
+      });
     });
-  });
+  })
   return (
     <>
       <div className="messages">
@@ -33,6 +36,7 @@ const EditSocialProof = (props) => {
             <input type="submit" value={"Atualizar"} />
           </div>
         </form>
+          <button className="cancel-edit-proof">Cancelar edição</button>
       </div>
     </>
   );
