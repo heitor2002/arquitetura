@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import HeaderIndex from "@/components/headerIndex/HeaderIndex";
-import SectionMosaic from "@/components/mosaic/SectionMosaic";
-import MosaicArts from "@/components/mosaic/MosaicArts";
-import ContactCall from "@/components/ContactCall";
+import HeaderIndex from "@/components/homepage/HeaderIndex";
+import SectionMosaic from "@/components/homepage/SectionMosaic";
+import MosaicArts from "@/components/homepage/MosaicArts";
+import ContactCall from "@/components/homepage/ContactCall";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 import Aos from "aos";

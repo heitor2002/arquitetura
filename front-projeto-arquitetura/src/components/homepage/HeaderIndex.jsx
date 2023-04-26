@@ -1,16 +1,9 @@
-import Header from "@/components/Header";
+import Header from "@/components/patternHeader/Header";
 import logo from "../../../public/images/logo_arquitetura.png";
 import Image from "next/image";
 import Link from "next/link";
 
 const HeaderIndex = () => {
-  const interiorDesign =
-    "https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
-  const residentialArchitecture =
-    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80";
-  const commercialArchitecture =
-    "https://images.unsplash.com/photo-1574936145840-28808d77a0b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80";
-
   return (
     <>
       <header>

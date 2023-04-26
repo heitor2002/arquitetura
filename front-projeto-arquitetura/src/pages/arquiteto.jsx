@@ -1,4 +1,4 @@
-import Navigation from "@/components/headerIndex/Navigation";
+import Navigation from "@/components/patternHeader/Navigation";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";

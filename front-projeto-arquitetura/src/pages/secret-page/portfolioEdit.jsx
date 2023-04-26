@@ -1,5 +1,5 @@
 import LayoutAdmin from "@/components/pageAdmin/LayoutAdmin";
-import ElementsPortfolio from "@/components/pageAdmin/PortfolioEdit";
+import ElementsPortfolio from "@/components/pageAdmin/portfolioPage/PortfolioEdit";
 
 const PortfolioEdit = () => {
     return (

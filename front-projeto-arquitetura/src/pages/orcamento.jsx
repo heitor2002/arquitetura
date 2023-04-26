@@ -1,4 +1,4 @@
-import Navigation from "@/components/headerIndex/Navigation";
+import Navigation from "@/components/patternHeader/Navigation";
 import Link from "next/link";
 import { useState } from "react";
 import { BsInstagram, BsFacebook, BsLinkedin } from "react-icons/bs";

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logo from "../../../public/images/logo_arquitetura.png";
-import Header from "../Header";
+import Header from "./Header";
 
 const Navigation = () => {
     return(

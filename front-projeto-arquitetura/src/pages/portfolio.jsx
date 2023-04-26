@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer";
-import Navigation from "@/components/headerIndex/Navigation";
+import Navigation from "@/components/patternHeader/Navigation";
 import ComparisonImages from "@/components/portfolioPage/ComparisonImages";
 import ImagesGalery from "@/components/portfolioPage/ImagesGalery";
 import Aos from "aos";

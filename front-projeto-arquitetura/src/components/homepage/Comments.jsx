@@ -3,7 +3,7 @@ import Aos from "aos";
 import { useEffect } from "react";
 
 const Comments = () => {
-  const { data } = fetchApi("http://localhost:3000/api/socialProof");
+  const { data } = fetchApi("http://localhost:5000/social-proof");
   useEffect(() => {
     Aos.init({ duration: 1000 });
   });

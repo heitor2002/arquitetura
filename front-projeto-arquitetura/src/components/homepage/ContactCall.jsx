@@ -1,4 +1,4 @@
-import Architect from "../../public/images/arquiteta.png";
+import Architect from "../../../public/images/arquiteta.png";
 
 import Image from "next/image";
 import Link from "next/link";
