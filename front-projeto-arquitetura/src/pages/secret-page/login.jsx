@@ -1,6 +1,34 @@
 import Head from "next/head";
+import { useState } from "react";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 const Login = () => {
+  const [user, setUser] = useState({
+    username: "",
+    password: ""
+  })
+
+  const router = useRouter()
+
+  const handleSubmit = async (e) => {
+    try{
+      e.preventDefault()
+      const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(user)
+      });
+      const json = await response.json();
+      setCookie("authorization", json.token);
+      router.push("/secret-page/admin")
+    }catch(err){
+      console.log(err)
+    }
+    
+  }
+
+  const onChangeInput = (e) => setUser({...user, [e.target.name]:e.target.value})
   return (
     <>
       <Head>
@@ -13,14 +41,14 @@ const Login = () => {
         <div className="container">
           <div className="box-login">
             <h2>Página de login</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div>
                 <label>Usuário:</label>
-                <input type="text" />
+                <input type="text" value={user.username} onChange={onChangeInput} name="username"/>
               </div>
               <div>
                 <label>Senha:</label>
-                <input type="password" />
+                <input type="password" value={user.password} onChange={onChangeInput} name="password"/>
               </div>
               <div>
                 <input type="submit" value={"Entrar"} />

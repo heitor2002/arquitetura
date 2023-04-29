@@ -1,6 +1,8 @@
 import LayoutAdmin from "@/components/pageAdmin/LayoutAdmin";
 import SocialProof from "@/components/pageAdmin/socialPage/SocialProof";
 import Head from "next/head";
+import { verifyToken } from "../../../services/user";
+import { getCookie } from "cookies-next";
 
 const Social = () => {
   return (
@@ -18,3 +20,22 @@ const Social = () => {
   );
 };
 export default Social;
+
+export const getServerSideProps = async ({ req, res }) => {
+  try {
+    const token = getCookie("authorization", {req, res});
+    if(!token) throw new Error ("Token inválido");
+    verifyToken(token)
+    return {
+      props: {},
+    };
+  } catch (err) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/secret-page/login"
+      },
+      props: {},
+    };
+  }
+};

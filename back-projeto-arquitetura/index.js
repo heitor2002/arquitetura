@@ -2,8 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
 const { threadId } = require("worker_threads");
+const jwt = require("jsonwebtoken")
 const app = express();
 const port = 5000;
+
+require("dotenv").config()
+const SECRET = process.env.JWT_SECRET;
 
 app.use(express.json());
 
@@ -266,10 +270,26 @@ app.put("/social-proof", (req, res) => {
   });
 });
 
+//OBTER USUÁRIO ADMIN
 const user = {
+  id: 1,
+  email: "mail@mail.com",
   username: "user",
-  password: "1234"
+  password: "123"
 }
+
+app.post("/login", (req, res) => {
+
+  const verifyUsername = req.body.username === user.username;
+  const verifyPassword = req.body.password === user.password;
+  if(verifyUsername && verifyPassword){
+    console.log("Informações compatíveis")
+    const token = jwt.sign({username: user.username, email: user.email},SECRET);
+    return res.json({auth: true, token})
+  }else{
+    console.log("Usuário ou senha incorretos.")
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

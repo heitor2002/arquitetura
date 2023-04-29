@@ -1,6 +1,8 @@
 import LayoutAdmin from "@/components/pageAdmin/LayoutAdmin";
 import PanelUsers from "@/components/pageAdmin/clientsPage/PanelUsers";
 import Head from "next/head";
+import { verifyToken } from "../../../services/user";
+import { getCookie } from "cookies-next";
 
 const Clientes = () => {
   return (
@@ -16,5 +18,25 @@ const Clientes = () => {
       </LayoutAdmin>
     </>
   );
+};
+
+
+export const getServerSideProps = async ({ req, res }) => {
+  try {
+    const token = getCookie("authorization", {req, res});
+    if(!token) throw new Error ("Token inválido");
+    verifyToken(token)
+    return {
+      props: {},
+    };
+  } catch (err) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/secret-page/login"
+      },
+      props: {},
+    };
+  }
 };
 export default Clientes;

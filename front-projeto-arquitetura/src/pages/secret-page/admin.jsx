@@ -1,5 +1,7 @@
 import LayoutAdmin from "@/components/pageAdmin/LayoutAdmin";
 import Head from "next/head";
+import { verifyToken } from "../../../services/user";
+import { getCookie } from "cookies-next";
 
 const Admin = () => {
   return (
@@ -14,4 +16,24 @@ const Admin = () => {
     </>
   );
 };
+
+export const getServerSideProps = async ({ req, res }) => {
+  try {
+    const token = getCookie("authorization", {req, res});
+    if(!token) throw new Error ("Token inválido");
+    verifyToken(token)
+    return {
+      props: {},
+    };
+  } catch (err) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/secret-page/login"
+      },
+      props: {},
+    };
+  }
+};
+
 export default Admin;
