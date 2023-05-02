@@ -14,6 +14,7 @@ const fetchApi = (url) => {
         .then((data) => {
           setData(data);
           setIsPending(false);
+          setError(null)
         })
         .catch((err) => {
           setError(err.message);

@@ -1,7 +1,9 @@
+import { ErrorFetchMessage } from "@/components/ErrorFetchMessage";
+import { LoadingPage } from "@/components/LoadingPage";
 import fetchApi from "@/hooks/fetchApi";
 
 const PanelUsers = () => {
-  const { data } = fetchApi("http://localhost:5000/clients");
+  const { data, isPending, error } = fetchApi("http://localhost:5000/clients");
   console.log(data);
 
   const handleUpdata = async (id) => {
@@ -35,6 +37,8 @@ const PanelUsers = () => {
     <>
       <div className="container-register">
         <h2>Cadastros:</h2>
+        {error && <ErrorFetchMessage errMessage={error}/>}
+        {isPending && <LoadingPage />}
         {data.map((user) => {
           const {id, name, email, phone, subject, message, read} = user
           return (

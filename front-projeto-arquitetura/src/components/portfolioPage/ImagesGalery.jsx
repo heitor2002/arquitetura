@@ -5,7 +5,7 @@ import { LoadingPage } from "../LoadingPage";
 import { ErrorFetchMessage } from "../ErrorFetchMessage";
 
 const ImagesGalery = () => {
-  const { data, isPending, error } = FetchApi("http://localhost:5000/portfolio-editt");
+  const { data, isPending, error } = FetchApi("http://localhost:5000/portfolio-edit");
 
   const [moreImages, setMoreImages] = useState(7);
 
