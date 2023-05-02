@@ -8,15 +8,18 @@ const fetchApi = (url) => {
     setTimeout(() => {
       fetch(url)
         .then((res) => {
-          if (!res.ok) throw Error("Falha ao se conectar com o banco de dados");
+          if (!res.ok) throw Error("A conexão falhou, tente novamente mais tarde...");
           return res.json();
         })
         .then((data) => {
           setData(data);
           setIsPending(false);
         })
-        .catch((err) => setError(err.message));
-    }, 3000);
+        .catch((err) => {
+          setError(err.message);
+          setIsPending(false);
+        });
+    }, 1500);
   }, [url]);
 
   return { data, error, isPending };

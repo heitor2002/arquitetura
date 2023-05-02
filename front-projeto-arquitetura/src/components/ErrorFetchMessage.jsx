@@ -1,22 +1,9 @@
-export const ErrorFetchMessage = () => {
+export const ErrorFetchMessage = ({errMessage}) => {
   return (
     <>
       <div
-        className="loading-comments"
-        style={{
-          width: "100%",
-          height: "100%",
-          backgroundColor: "#eaeae9",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div class="lds-facebook">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+        className="loading-error-message">
+        <h2>{errMessage}</h2>
       </div>
     </>
   );
