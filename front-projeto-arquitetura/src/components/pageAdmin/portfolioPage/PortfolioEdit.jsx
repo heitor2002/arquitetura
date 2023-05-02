@@ -1,9 +1,11 @@
 import fetchApi from "@/hooks/fetchApi";
 import { useState } from "react";
 import FormEdition from "./FormEdition";
+import { LoadingPage } from "@/components/LoadingPage";
+import { ErrorFetchMessage } from "@/components/ErrorFetchMessage";
 
 const ElementsPortfolio = () => {
-  const { data } = fetchApi("http://localhost:5000/portfolio-edit");
+  const { data, isPending, error } = fetchApi("http://localhost:5000/portfolio-edit");
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -94,6 +96,8 @@ const ElementsPortfolio = () => {
         <button className="form-cancel" onClick={desactiveForm}>
           Cancelar
         </button>
+        {error && <ErrorFetchMessage errMessage={error}/>}
+        {isPending && <LoadingPage />}
         {data
           .filter((value) => {
             if (searchTerm == "") {
