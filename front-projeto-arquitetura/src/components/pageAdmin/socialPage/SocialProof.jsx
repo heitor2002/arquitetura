@@ -1,9 +1,11 @@
 import fetchApi from "@/hooks/fetchApi";
 import { useState } from "react";
 import EditSocialProof from "./EditSocialProof";
+import { LoadingPage } from "@/components/LoadingPage";
+import { ErrorFetchMessage } from "@/components/ErrorFetchMessage";
 
 const SocialProof = () => {
-  const { data } = fetchApi("http://localhost:5000/social-proof");
+  const { data, isPending, error } = fetchApi("http://localhost:5000/social-proof");
   const [dataSocialProof, setDataSocialProof] = useState({
     name: "",
     message: "",
@@ -58,6 +60,8 @@ const SocialProof = () => {
             <input type="submit" value={"Enviar"} />
           </div>
         </form>
+        {error && <ErrorFetchMessage errMessage={error} />}
+        {isPending && <LoadingPage />}
         {data.map((user) => {
           const {id, name, message} = user;
           return <EditSocialProof id={id} name={name} message={message}/>;
