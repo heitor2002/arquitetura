@@ -1,9 +1,11 @@
 import FetchApi from "@/hooks/fetchApi";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { LoadingPage } from "../LoadingPage";
+import { ErrorFetchMessage } from "../ErrorFetchMessage";
 
 const ImagesGalery = () => {
-  const { data } = FetchApi("http://localhost:5000/portfolio-edit");
+  const { data, isPending, error } = FetchApi("http://localhost:5000/portfolio-editt");
 
   const [moreImages, setMoreImages] = useState(7);
 
@@ -35,7 +37,9 @@ const ImagesGalery = () => {
             Conheça um pouco mais da <i>galeria de projetos</i>
           </h2>
           <div className="flex-galery">
-            {data.slice(0, moreImages).map((item, index) => {
+            {error && <ErrorFetchMessage errMessage={error}/>}
+            {isPending && <LoadingPage />}
+            {data.length > 0 && data.slice(0, moreImages).map((item, index) => {
               return (
                 <>
                   <div
