@@ -1,6 +1,7 @@
 import fetchApi from "@/hooks/fetchApi";
 import Aos from "aos";
 import { useEffect } from "react";
+import { LoadingPage } from "../LoadingPage";
 
 const Comments = () => {
   const { data, error, isPending } = fetchApi("http://localhost:5000/social-proof");
@@ -11,7 +12,7 @@ const Comments = () => {
     <>
       <aside className="comments" data-aos="fade-up">
         {error && <div className="commentary">{error}</div>}
-        {isPending && <div>Loading...</div>}
+        {isPending && <LoadingPage />}
         {data.map((commentary) => {
           return (
             <>
