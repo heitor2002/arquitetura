@@ -11,6 +11,7 @@ import Aos from "aos";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+
   useEffect(() => {
     Aos.init({ duration: 1000 });
   });
@@ -23,13 +24,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeaderIndex />
-      {/* line-detail */}
       <div className="line-detail">
         <div className="container">
           <div className="line"></div>
         </div>
       </div>
-      {/* line-detail */}
       <SectionMosaic />
       <section className="youtube-video">
         <div className="container" data-aos="fade-up">

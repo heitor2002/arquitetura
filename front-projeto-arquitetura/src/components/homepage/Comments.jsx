@@ -3,13 +3,15 @@ import Aos from "aos";
 import { useEffect } from "react";
 
 const Comments = () => {
-  const { data } = fetchApi("http://localhost:5000/social-proof");
+  const { data, error, isPending } = fetchApi("http://localhost:5000/social-proof");
   useEffect(() => {
     Aos.init({ duration: 1000 });
   });
   return (
     <>
       <aside className="comments" data-aos="fade-up">
+        {error && <div className="commentary">{error}</div>}
+        {isPending && <div>Loading...</div>}
         {data.map((commentary) => {
           return (
             <>
